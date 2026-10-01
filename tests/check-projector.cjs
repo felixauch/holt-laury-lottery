@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),Results=require('../app/results.js');
+const html=Results.render(JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'fixture.json'),'utf8'))),overview=html.split('<details class="result-details">')[0];
+assert.equal((overview.match(/class="projector-row"/g)||[]).length,10);
+assert(overview.includes('Class average EV'));
+assert(!overview.includes('ev-formula'));
+assert(!overview.includes('Individual choices'));
+assert(!html.includes('A choices per student'));
+assert(html.includes('<details class="result-details"><summary>Details</summary>'));
+assert(!html.includes('<details class="result-details" open'));
+console.log('Passed: one ten-row chart, one EV summary, detailed results collapsed, and second figure removed.');

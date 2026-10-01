@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');
+const Results=require('../app/results.js');
+const near=(actual,expected)=>assert(Math.abs(actual-expected)<1e-10,`${actual} != ${expected}`);
+const classic={A:[400,320],B:[770,20]},legacy={A:[550,450],B:[1000,100]};
+const fixture=(payoffs,n,aCount)=>({completed:n,a_counts:Array(10).fill(aCount),session:{payoffs,mode:'real'}});
+// One all-A and two all-B students: their ten-row EVs are 3.64, 4.325, 4.325.
+const d=fixture(classic,3,1),e=Results.expectations(d);
+near(e.rows[4].groupEV,(3.60+2*3.95)/3);
+near(e.groupEV,(3.64+2*4.325)/3);
+near(e.expectedTotal,2*(3.64+2*4.325)/3);
+near(e.expectedPerStudent,2*(3.64+2*4.325)/9);
+assert.equal(e.rows[0].high,10);assert.equal(e.rows[9].low,0);
+near(Results.participantEV(Array(10).fill('A'),classic),3.64);
+near(Results.participantEV(Array(10).fill('B'),classic),4.325);
+near(Results.participantEV(['A','A','A','A','B','B','B','B','B','B'],classic),4.855);
+near(Results.expectations(fixture(legacy,2,1)).groupEV,5.5);
+near(Results.expectations(fixture(classic,1,1)).groupEV,3.64);
+assert.equal(Results.expectations(fixture(classic,1,1)).expectedTotal,null);
+assert.equal(Results.expectations(fixture(classic,0,0)).groupEV,null);
+const rendered={...d,histogram:[2,0,0,0,0,0,0,0,0,0,1],nonmonotonic:0,participants:[{name:'A',joined:true,submitted:true,choices:Array(10).fill('A'),summary:{a_count:10}},{name:'B',joined:true,submitted:true,choices:Array(10).fill('B'),summary:{a_count:0}},{name:'C',joined:true,submitted:true,choices:Array(10).fill('B'),summary:{a_count:0}},{name:'Unfinished',joined:true,choices:null}]};
+const html=Results.render(rendered);
+assert(html.includes('CHF 4.10'));assert(html.includes('expected total CHF 8.19'));assert(html.includes('expected per student CHF 2.73'));assert(html.includes('selection chance 2/3'));assert(html.includes('1/3 × 3.60 + 2/3 × 3.95'));assert(html.includes('50% × 4.00 + 50% × 3.20'));assert(html.includes('Not submitted'));assert(!html.includes('NaN'));
+console.log('Passed: probability weights, observed-choice weights, equal weighting of ten rows and students, selection probability, legacy stakes, and incomplete/empty cases.');

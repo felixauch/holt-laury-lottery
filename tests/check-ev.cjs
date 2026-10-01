@@ -1,0 +1,15 @@
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const Results=require('../app/results.js');
+const classic={A:[400,320],B:[770,20]},legacy={A:[550,450],B:[1000,100]};
+assert.deepEqual(Results.expectedValue(classic,4,'A'),{rank:'higher',value:3.52,other:3.20});
+assert.deepEqual(Results.expectedValue(classic,5,'B'),{rank:'higher',value:3.95,other:3.60});
+assert.equal(Results.expectedValue(classic,1,'B').rank,'lower');
+assert.equal(Results.expectedValue(classic,10,'A').rank,'lower');
+assert.deepEqual(Results.expectedValue(legacy,4,'A'),{rank:'higher',value:4.90,other:4.60});
+assert.deepEqual(Results.expectedValue(legacy,5,'B'),{rank:'higher',value:5.50,other:5.00});
+assert.equal(Results.expectedValue({A:[100,100],B:[100,100]},5,'A').rank,'equal');
+const fixture=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'fixture.json'),'utf8')),html=Results.render(fixture);
+assert.equal((html.match(/class="answer answer-higher"/g)||[]).length,19);
+assert.equal((html.match(/class="answer answer-lower"/g)||[]).length,11);
+assert(html.includes('Higher expected value')&&html.includes('Lower expected value'));
+console.log('Passed: classic and legacy expected-value boundary rows, equal-value case, and all 30 saved fixture choices coloured correctly.');

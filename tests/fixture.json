@@ -1,0 +1,114 @@
+{
+  "participants": [
+    {
+      "name": "Test Alex",
+      "ticket": "synthetic-alex",
+      "joined": true,
+      "submitted": true,
+      "choices": [
+        "A",
+        "A",
+        "A",
+        "A",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "summary": {
+        "a_count": 4
+      }
+    },
+    {
+      "name": "Test Bea",
+      "ticket": "synthetic-bea",
+      "joined": true,
+      "submitted": true,
+      "choices": [
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B",
+        "B"
+      ],
+      "summary": {
+        "a_count": 0
+      }
+    },
+    {
+      "name": "Test Chen",
+      "ticket": "synthetic-chen",
+      "joined": true,
+      "submitted": true,
+      "choices": [
+        "A",
+        "B",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A",
+        "A"
+      ],
+      "summary": {
+        "a_count": 9
+      }
+    },
+    {
+      "name": "Test Dana",
+      "ticket": "synthetic-dana",
+      "joined": true,
+      "submitted": false,
+      "choices": null
+    }
+  ],
+  "completed": 3,
+  "a_counts": [
+    2,
+    1,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "histogram": [
+    1,
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0
+  ],
+  "nonmonotonic": 1,
+  "session": {
+    "payoffs": {
+      "A": [
+        550,
+        450
+      ],
+      "B": [
+        1000,
+        100
+      ]
+    },
+    "mode": "practice"
+  }
+}
