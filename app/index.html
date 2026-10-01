@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Holt and Laury Lottery</title><link rel="icon" href="favicon.svg"><link rel="stylesheet" href="style.css?v=15"><script defer src="student.js?v=8"></script></head>
+<body><main class="student">
+<section id="join" hidden><h1>Holt and Laury Lottery</h1><p id="room-status">Waiting for your instructor.</p><form id="join-form" hidden><label for="name">Your name or nickname</label><input id="name" maxlength="60" autocomplete="off" required><button class="primary">Join</button></form><p class="small muted">Your name and choices are saved for your instructor.</p><button id="check-room" class="text-button">Refresh</button></section>
+<p id="notice" class="error" role="alert" hidden></p>
+<section id="experiment" hidden><div class="topline"><strong id="participant-name"></strong><span id="mode" class="small muted"></span></div>
+<section id="decision-section"><h1>10 choices</h1><p>Choose A or B in each row.</p><p class="payment-note">Two students are picked at random. One random choice sets each payment: <strong id="payment-range"></strong>. Others receive CHF 0.</p>
+<form id="choices-form"><table class="choices-table"><thead><tr><th>Chance<br><span>high / low</span></th><th>A<br><span id="payoffs-a"></span></th><th>B<br><span id="payoffs-b"></span></th></tr></thead><tbody id="choices"></tbody></table><div class="submit-row"><span id="progress" class="small muted" aria-live="polite">0 / 10</span><button class="primary" id="submit">Submit choices</button></div><p id="choice-error" class="error" role="alert" hidden></p></form></section>
+<section id="receipt" aria-live="polite" hidden></section>
+
+<button id="practice-next" class="text-button" hidden>Try another practice participant</button><a id="new-session" class="text-button" href="./" hidden>Join the new session</a></section>
+<footer class="app-credit">Developed with AI assistance from GPT6-Astra.</footer>
+</main></body></html>
