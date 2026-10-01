@@ -1,0 +1,16 @@
+# Deployment files and all session data are private.
+config.php
+join-qr.svg
+build/
+data/
+*.sqlite*
+*.db*
+*.csv
+*.zip
+.env
+.env.*
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+Thumbs.db

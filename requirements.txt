@@ -1,0 +1,2 @@
+# Used locally to generate the permanent QR; not needed by the deployed PHP app.
+reportlab>=4.4,<5
